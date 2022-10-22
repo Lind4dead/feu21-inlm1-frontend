@@ -19,7 +19,7 @@ const LoginView = () => {
         </div>
         <button className='btn-dark btn'>Login</button>
       </div>
-      <p className='text-center'>or <span className='link-item'>register here</span></p>
+      <p className='text-center'>or <span className=''>register here</span></p>
     </div>
   )
 }
