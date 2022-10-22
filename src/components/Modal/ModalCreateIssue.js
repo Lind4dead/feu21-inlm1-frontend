@@ -23,7 +23,7 @@ const ModalCreateIssue = () => {
                 </div>
                 <div className='mb-3'>
                   <label htmlFor="" className='form-label'>Description</label>
-                  <textarea type="text" placeholder='Main issue...' className='form-control' rows="3"></textarea>
+                  <textarea type="text" placeholder='Describe your issue...' className='form-control' rows="3"></textarea>
                 </div>
               </form>
             </div>

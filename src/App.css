@@ -7,3 +7,13 @@
 textarea {
   resize: none;
 }
+p {
+  margin: 0;
+}
+
+.bg-success.list-group-item-action:hover, .bg-success.list-group-item-action:focus {
+  z-index: 3;
+  color: #000000;
+  text-decoration: none;
+  background-color: #7c7c7c;
+}
