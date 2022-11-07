@@ -1,39 +1,78 @@
-import React from 'react'
+import axios from 'axios'
+import { useContext } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../contexts/userContext'
 
 const ModalCreateIssue = () => {
+
+  const [newIssue, setNewIssue] = useState({
+    subject: '',
+    message: ''
+  })
+  const navigate = useNavigate()
+
+  const { user } = useContext(UserContext)
+
+  const onChange = e => {
+    setNewIssue(state => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    console.log(newIssue)
+    await axios.post('https://localhost:7035/api/issues', newIssue, {
+      headers: {
+        'Authorization': `Bearer ${user}`
+      }
+    })
+    console.log(newIssue)
+    setNewIssue({
+      subject: '',
+      message: ''
+    })
+    
+    
+
+  }
+
   return (
     <div>
-      <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#createModal">
         Create New Issue
       </button>
 
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="createModal" tabIndex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">Create New Issue</h1>
+              <h1 className="modal-title fs-5" id="createModalLabel">Create New Issue</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form>
+              <form onSubmit={handleSubmit}> 
                 <div className='mb-3'>
                   <label htmlFor="" className='form-label'>Title</label>
-                  <input type="text" placeholder='Main issue...' className='form-control' />
+                  <input value={newIssue.title} onChange={onChange} name="subject" type="text" placeholder='Main issue...' className='form-control' />
                 </div>
                 <div className='mb-3'>
                   <label htmlFor="" className='form-label'>Description</label>
-                  <textarea type="text" placeholder='Describe your issue...' className='form-control' rows="3"></textarea>
+                  <textarea value={newIssue.description} onChange={onChange} name="message" type="text" placeholder='Describe your issue...' className='form-control' rows="3"></textarea>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit}>Create</button>
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Create</button>
-            </div>
           </div>
         </div>
-      </div></div>
+      </div>
+    </div>
   )
 }
 

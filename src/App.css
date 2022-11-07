@@ -17,3 +17,37 @@ p {
   text-decoration: none;
   background-color: #7c7c7c;
 }
+.modal-footer {
+  justify-content: space-between;
+}
+
+.modal-comments{
+  margin: 0;
+  padding: 1rem;
+}
+
+.comment-text {
+  font-size: .8rem;
+}
+.comment-name {
+  font-size: .7rem;
+  margin-left: 1.1rem;
+}
+.comment-time {
+  font-size: .7rem;
+  margin-right: 1.1rem;
+}
+.modal-select {
+  width: 33%;
+}
+.modal-header-content {
+  align-items: center;
+  justify-content: end;
+  flex: 1;
+}
+.fa-trash {
+  cursor: pointer;
+}
+.fa-arrow-left {
+  cursor: pointer;
+}

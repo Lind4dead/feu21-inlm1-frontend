@@ -1,7 +1,30 @@
 import React from 'react'
+import { useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { UserContext } from '../contexts/userContext'
+import actiontypes from '../reducers/actiontypes'
+
 
 const Navbar = () => {
+
+  
+const { user, dispatch } = useContext(UserContext)
+
+const logout = () => {
+  dispatch({
+    type: actiontypes().users.logout
+  })
+}
+
+
+  useEffect(() => {
+    dispatch({
+      type: actiontypes().users.checkToken,
+    })
+  
+  }, [dispatch])
+  
+
   return (
     <nav className="navbar navbar-dark navbar-expand-md bg-dark">
   <div className="container-fluid">
@@ -15,7 +38,7 @@ const Navbar = () => {
           <NavLink className="nav-link active" to="/" aria-current="page" href="#">Home</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/login">Log in</NavLink>
+          {user ? <NavLink onClick={logout} className="nav-link" to="/">Logout</NavLink> : <NavLink className="nav-link" to="/login">Log in</NavLink>}
         </li>
       </ul>
       <form className="d-flex" role="search">

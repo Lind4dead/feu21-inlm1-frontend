@@ -1,28 +1,56 @@
-{"issues": [
-  {
-    "id": 1,
-    "title": "Title 1",
-    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
-    "createdAt": "2022-10-22T11_01_01",
-    "completed": false,
-    "user": "Emil Lind"
-  },
-  {
-    "id": 2,
-    "title": "Title 2",
-    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
-    "createdAt": "2022-10-22T11_01_01",
-    "completed": false,
-    "user": "Emil Lind"
-  },
-  {
-    "id": 3,
-    "title": "Title 3",
-    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
-    "createdAt": "2022-10-22T11_01_01",
-    "completed": true,
-    "user": "Emil Lind"
-  }
-]
-
+{
+  "issues": [
+    {
+      "id": 1,
+      "title": "Title 1",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
+      "createdAt": "2022-10-22T11_01_01",
+      "completed": false,
+      "user": "Emil Lind"
+    },
+    {
+      "id": 2,
+      "title": "Title 2",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
+      "createdAt": "2022-10-22T11_01_01",
+      "completed": false,
+      "user": "Emil Lind"
+    },
+    {
+      "id": 3,
+      "title": "Title 3",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita doloremque cum cupiditate excepturi? Blanditiis, laboriosam.",
+      "createdAt": "2022-10-22T11_01_01",
+      "completed": true,
+      "user": "Emil Lind"
+    },
+    {
+      "title": "Nånting roligt",
+      "desc": "Men ingen vet vad det roliga egentligen är",
+      "created": 1666644900895,
+      "status": "Not started",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Emil",
+      "lastName": "Lind",
+      "email": "emil@mail.com",
+      "password": "BytMig123"
+    },
+    {
+      "email": "emil@mail.com",
+      "password": "BytMig123",
+      "id": 2
+    },
+    {
+      "firstName": "Emil",
+      "lastName": "Lind",
+      "email": "emil.lind@me.se",
+      "password": "BytMig123",
+      "id": 3
+    }
+  ]
 }

@@ -1,19 +1,29 @@
-import React from 'react'
-import ModalIssueDetails from './Modal/ModalIssueDetails'
 
-const ListItem = ({item}) => {
+import { Link } from 'react-router-dom'
+
+
+const ListItem = ({ item }) => {
+
+
+
+
+
+
+
   return (
-    
+
     <div>
 
-    <button type="button"  className={"list-group-item list-group-item-action " + (item.completed && "bg-success")}><div className='d-flex justify-content-between' data-bs-toggle="modal" data-bs-target={'#issueModal' + item.id}>
-      <div className='d-flex justify-content-between flex-column'><h5>Issue</h5><p>{item.completed ? "Completed" : "Ongoing"}</p></div>
-      <div><h5>{item.user}</h5><p>Created at: </p><small className='fst-italic'>{item.createdAt}</small></div>
+      <Link className='text-decoration-none' to={`/details/${item.id}`}>
+        <button type="button" className={"list-group-item list-group-item-action"}>
+          <div className='d-flex justify-content-between' >
+            <div className='d-flex justify-content-between flex-column gap-2'><p><span className='fw-bold'>Created by: </span>{item.email}</p><h5>{item.subject}</h5><p>{item.status}</p></div>
+            <div><h5>{item.user}</h5><p>Created at: </p><small className='fst-italic'>{item.created.slice(0, 19)}</small></div>
+          </div>
+        </button></Link>
+
     </div>
-    </button>
-    <ModalIssueDetails item={item}/>
-    </div>
-    
+
   )
 }
 
