@@ -46,7 +46,6 @@ const IssueDetails = () => {
 
   const getIssue = useCallback(async (e) => {
     const res = await axios.get('https://localhost:7035/api/issues/' + id)
-    console.log(res.data)
     setIssue(res.data)
     setComments(res.data.comments)
   }, [id]);
@@ -57,9 +56,7 @@ const IssueDetails = () => {
   }
 
   const updateIssue = async value => {
-    console.log(value)
     const res = await axios.put('https://localhost:7035/api/issues/' + id, { statusId: value })
-    console.log(res.data)
     setIssue(state => ({
       ...state,
       status: res.data.status,

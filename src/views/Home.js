@@ -1,20 +1,27 @@
-import { useEffect, useState, useContext} from 'react'
+import { useEffect, useState, useContext, useCallback} from 'react'
 import axios from 'axios'
 import ListItem from '../components/ListItem'
 import ModalCreateIssue from '../components/Modal/ModalCreateIssue'
 import actiontypes from '../reducers/actiontypes'
 import { UserContext } from '../contexts/userContext'
-import { useCallback } from 'react'
 
 
 const Home = () => {
 
 
   const [issues, setIssues] = useState([])
+  const { user, dispatch } = useContext(UserContext)
   
-  const getAllIssues = useCallback(async () => {
-    const _issues = await axios.get("https://localhost:7035/api/Issues")
-    console.log(_issues.data)
+  
+  const getAllIssues = useCallback(async (_user) => {
+    
+    
+    const _issues = await axios.get("https://localhost:7035/api/Issues", {
+      headers: {
+        'Authorization': `Bearer ${_user}`
+      }
+    })
+    
     setIssues(_issues.data.sort((a,b) => {
       return  Date.parse(b.created)-Date.parse(a.created)
     }))
@@ -22,15 +29,14 @@ const Home = () => {
   },[])
 
 
-  const { user, dispatch } = useContext(UserContext)
 
   useEffect(() => {
-    getAllIssues()
     dispatch({
       type: actiontypes().users.checkToken,
     })
+    getAllIssues(user)
   
-  }, [dispatch, getAllIssues])
+  }, [dispatch, getAllIssues, user])
 
   return (
     <div className='container'>

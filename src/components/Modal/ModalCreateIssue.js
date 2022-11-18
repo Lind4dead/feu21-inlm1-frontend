@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useContext } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/userContext'
 
 const ModalCreateIssue = () => {
@@ -10,7 +9,6 @@ const ModalCreateIssue = () => {
     subject: '',
     message: ''
   })
-  const navigate = useNavigate()
 
   const { user } = useContext(UserContext)
 
@@ -23,20 +21,17 @@ const ModalCreateIssue = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    console.log(newIssue)
     await axios.post('https://localhost:7035/api/issues', newIssue, {
       headers: {
         'Authorization': `Bearer ${user}`
       }
     })
-    console.log(newIssue)
-    setNewIssue({
+    setNewIssue(state => ({
+      ...state,
       subject: '',
       message: ''
-    })
+    }))
     
-    
-
   }
 
   return (
@@ -57,15 +52,15 @@ const ModalCreateIssue = () => {
               <form onSubmit={handleSubmit}> 
                 <div className='mb-3'>
                   <label htmlFor="" className='form-label'>Title</label>
-                  <input value={newIssue.title} onChange={onChange} name="subject" type="text" placeholder='Main issue...' className='form-control' />
+                  <input value={newIssue.subject} onChange={onChange} name="subject" type="text" placeholder='Main issue...' className='form-control' />
                 </div>
                 <div className='mb-3'>
                   <label htmlFor="" className='form-label'>Description</label>
-                  <textarea value={newIssue.description} onChange={onChange} name="message" type="text" placeholder='Describe your issue...' className='form-control' rows="3"></textarea>
+                  <textarea value={newIssue.message} onChange={onChange} name="message" type="text" placeholder='Describe your issue...' className='form-control' rows="3"></textarea>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit}>Create</button>
+                  <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Create</button>
                 </div>
               </form>
             </div>
